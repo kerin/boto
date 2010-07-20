@@ -26,7 +26,7 @@ Auto Scaling service.
 
 import boto
 from boto.connection import AWSQueryConnection
-from boto.region import RegionInfo
+from boto.regioninfo import RegionInfo
 from boto.ec2.autoscale.request import Request
 from boto.ec2.autoscale.trigger import Trigger
 from boto.ec2.autoscale.launchconfig import LaunchConfiguration
@@ -61,7 +61,7 @@ class AutoScaleConnection(AWSQueryConnection):
                                     aws_secret_access_key,
                                     is_secure, port, proxy, proxy_port,
                                     proxy_user, proxy_pass,
-                                    self.region.endpoint, debug,
+                                    "autoscaling.%s.amazonaws.com" % region.name, debug,
                                     https_connection_factory, path=path)
 
     def build_list_params(self, params, items, label):
